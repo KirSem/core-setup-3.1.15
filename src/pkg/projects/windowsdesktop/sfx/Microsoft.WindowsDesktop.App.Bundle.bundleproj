@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--
+      Name, used to generate the bundle upgrade code. Must stay the same to allow bundles in a given
+      product band to upgrade in place.
+    -->
+    <BundleInstallerUpgradeCodeSeed>Windows Desktop Shared Framework Bundle Installer</BundleInstallerUpgradeCodeSeed>
+    <SkipArm64InstallerBuild>true</SkipArm64InstallerBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <BundleComponentReference Include="Microsoft.WindowsDesktop.App.SharedFx.sfxproj" />
+
+    <!-- Include .NET Core Runtime MSIs. -->
+    <BundleComponentReference Include="..\..\netcoreapp\sfx\Microsoft.NETCore.App.SharedFx.sfxproj" />
+    <BundleComponentReference Include="..\..\Microsoft.NETCore.DotNetHostResolver\Microsoft.NETCore.DotNetHostResolver.pkgproj" />
+    <BundleComponentReference Include="..\..\Microsoft.NETCore.DotNetHost\Microsoft.NETCore.DotNetHost.pkgproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <CandleVariables Include="BundleThmDir" Value="$(MSBuildProjectDirectory)" />
+  </ItemGroup>
+
+</Project>
